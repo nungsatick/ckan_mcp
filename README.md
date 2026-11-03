@@ -55,13 +55,13 @@ node -e "console.log(require('path').resolve('dist/index.js'))"
 ### Claude Code
 
 ```bash
-claude mcp add --env "CKAN_SITES=nso=https://catalog.nso.go.th,gdcatalog=https://gdcatalog.go.th" --transport stdio --scope user ckan-thaigdc -- node C:/path/to/ckan-thaigdc-mcp/dist/index.js
+claude mcp add --env "CKAN_SITES=nso=https://catalog.nso.go.th,gdcatalog=https://gdcatalog.go.th" --transport stdio --scope user ckan-thaigdc-mcp -- node C:/path/to/ckan-thaigdc-mcp/dist/index.js
 ```
 
 ตรวจสอบด้วยคำสั่งนี้ หรือพิมพ์ `/mcp` ใน Claude Code
 
 ```bash
-claude mcp get ckan-thaigdc
+claude mcp get ckan-thaigdc-mcp
 ```
 
 - `--scope user` ใช้ได้ทุกโปรเจกต์ ถ้าต้องการแชร์เฉพาะโปรเจกต์ให้ใช้ `--scope project` ซึ่งจะสร้าง `.mcp.json`
@@ -74,7 +74,7 @@ claude mcp get ckan-thaigdc
 ```json
 {
   "mcpServers": {
-    "ckan-thaigdc": {
+    "ckan-thaigdc-mcp": {
       "command": "node",
       "args": ["C:/path/to/ckan-thaigdc-mcp/dist/index.js"],
       "env": {
@@ -87,25 +87,25 @@ claude mcp get ckan-thaigdc
 
 2. ปิด Claude Desktop ให้สนิทรวมถึงที่ system tray แล้วเปิดใหม่
 
-ไฟล์นี้ปกติอยู่ที่ `%APPDATA%\Claude\claude_desktop_config.json` แต่ถ้าติดตั้งจาก Microsoft Store อาจอยู่ที่อื่น จึงควรเปิดผ่านเมนู Edit Config ถ้ามี `mcpServers` อยู่แล้ว ให้เพิ่มเฉพาะ `ckan-thaigdc` เข้าไป
+ไฟล์นี้ปกติอยู่ที่ `%APPDATA%\Claude\claude_desktop_config.json` แต่ถ้าติดตั้งจาก Microsoft Store อาจอยู่ที่อื่น จึงควรเปิดผ่านเมนู Edit Config ถ้ามี `mcpServers` อยู่แล้ว ให้เพิ่มเฉพาะ `ckan-thaigdc-mcp` เข้าไป
 
 ### Codex (CLI, IDE extension, ChatGPT desktop)
 
 ทั้งสามตัวใช้ไฟล์ตั้งค่าเดียวกันคือ `~/.codex/config.toml` (Windows: `%USERPROFILE%\.codex\config.toml`) ให้เพิ่มส่วนนี้
 
 ```toml
-[mcp_servers.ckan-thaigdc]
+[mcp_servers.ckan-thaigdc-mcp]
 command = "node"
 args = ["C:/path/to/ckan-thaigdc-mcp/dist/index.js"]
 
-[mcp_servers.ckan-thaigdc.env]
+[mcp_servers.ckan-thaigdc-mcp.env]
 CKAN_SITES = "nso=https://catalog.nso.go.th,gdcatalog=https://gdcatalog.go.th"
 ```
 
 หรือเพิ่มด้วยคำสั่ง
 
 ```bash
-codex mcp add ckan-thaigdc --env "CKAN_SITES=nso=https://catalog.nso.go.th,gdcatalog=https://gdcatalog.go.th" -- node C:/path/to/ckan-thaigdc-mcp/dist/index.js
+codex mcp add ckan-thaigdc-mcp --env "CKAN_SITES=nso=https://catalog.nso.go.th,gdcatalog=https://gdcatalog.go.th" -- node C:/path/to/ckan-thaigdc-mcp/dist/index.js
 ```
 
 ตรวจสอบด้วยคำสั่งนี้ หรือพิมพ์ `/mcp` ใน Codex
@@ -124,7 +124,7 @@ codex mcp list
 ```json
 {
   "mcpServers": {
-    "ckan-thaigdc": {
+    "ckan-thaigdc-mcp": {
       "command": "node",
       "args": ["C:/path/to/ckan-thaigdc-mcp/dist/index.js"],
       "env": {
